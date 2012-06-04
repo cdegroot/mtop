@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Millie Top &mdash; {{ page.title }}</title>
+    <link rel="stylesheet" href="{{ wiki.base_path }}css/blueprint/screen.css" type="text/css" charset="utf-8" media="screen,projection" />
+    <link rel="stylesheet" href="{{ wiki.base_path }}css/blueprint/print.css" type="text/css" charset="utf-8" media="print" />
+    <!--[if IE]>
+<link rel="stylesheet" href="{{ wiki.base_path }}css/blueprint/ie.css" type="text/css" charset="utf-8" />
+<![endif]-->
+    <link rel="stylesheet" href="{{ wiki.base_path }}css/style.css" type="text/css" charset="utf-8" />
+    <script src="{{ wiki.base_path }}javascript/MathJax/MathJax.js" type="text/javascript">
+      MathJax.OutputJax.fontDir = "http://github-assets.s3.amazonaws.com/javascripts/MathJax/fonts"
+      MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"]
+      })
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="span-24 last">
+        <h1 class="pagetitle">{{ page.title }}</h1>
+      </div>
+
+      <div class="span-19 colborder">
+        <div class="pagecontent">
+          {{ page.content }}
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                var disqus_shortname = 'evrl';
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+      </div>
+
+      <div class="column last span-4 sidebar">
+        <div><a href="{{ wiki.base_path }}Home.html">Home</a></div>
+      </div>
+
+      <hr/>
+      <div style="span-24 last">
+        <small>Copyright (c)2011, 2012 Cees de Groot. All rights reserved. Last edited {{ page.date }}. Available on IPv6. No users where harmed during testing of this site.</small>
+      </div>
+    </div>
+  </body>
+</html>
