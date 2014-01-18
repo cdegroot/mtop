@@ -1,8 +1,6 @@
-Welkom op mijn website. Deze site is nog heel erg in aanbouw, maar je
-kunt alvast wat van mijn <a href="gallery/index.html">schilderijen</a>
-bekijken.
+Welcome to my site. This site is very much under construction, but
+I have already put some of my <a href="gallery/index.html">paintings</a>
+online.
 
-Groetjes,
-
-Millie
-
+I am a painter living in Toronto, slowly specializing in paintings
+of birds.
