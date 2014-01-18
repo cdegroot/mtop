@@ -1,6 +1,6 @@
 #previewFull {
   background-color: #FFF8F0 !important;
-  width: 830px !important;
+  width: 832px !important;
   color: inherit;
 }
 
@@ -8,7 +8,7 @@
 }
 
 #sitetitle {
-  border-bottom: 1px dotted #7F7F7F !important;
+  border-bottom: none !important;
 }
 
 body {
@@ -17,11 +17,11 @@ body {
 }
 
 #stage, #stage2 {
-  border-bottom: 1px dotted #7F7F7F !important;
+  border-bottom: none !important;
 }
 
 .borderRight {
-  border-right: 1px solid #FFF8F0 !important;
+  border-right: 1px solid #FFF7F0 !important;
 }
 
 #wrapper_thumb {
@@ -53,7 +53,7 @@ body {
 }
 
 #stage2 {
-  width: 830px !important;
+  width: 832px !important;
 }
 
 .thumb, .preview {
@@ -65,12 +65,12 @@ body {
 }
 
 .borderTopLeft {
-  border-top: 1px solid #FFF8F0 !important;
-  border-left: 1px solid #FFF8F0 !important;
+  border-top: 1px solid #FFF7F0 !important;
+  border-left: 1px solid #FFF7F0 !important;
 }
 
 .borderRightDotted {
-  border-right: 1px dotted #FFF8F0 !important;
+  border-right: 1px dotted #FFF7F0 !important;
 }
 
 .caption {
@@ -84,16 +84,16 @@ body {
 }
 
 #wrapper_large {
-  width: 830px !important;
+  width: 832px !important;
 }
 
 .borderBottomRight {
-  border-right: 1px solid #FFF8F0 !important;
-  border-bottom: 1px solid #FFF8F0 !important;
+  border-right: 1px solid #FFF7F0 !important;
+  border-bottom: 1px solid #FFF7F0 !important;
 }
 
 #previewImage {
-  maxSize: 800.00 !important;
+  maxSize: 802.00 !important;
 }
 
 .paginationLinks, .pagination, #liveUpdatePagination {
@@ -107,7 +107,7 @@ body {
 }
 
 .borderBottom {
-  border-bottom: 1px solid #FFF8F0 !important;
+  border-bottom: 1px solid #FFF7F0 !important;
 }
 
 #stage {
@@ -115,6 +115,6 @@ body {
 }
 
 .textColor {
-  color: #222222 !important;
+  color: #B3B3B3 !important;
   background-color: inherit;
 }

@@ -91,79 +91,31 @@ var setActiveImageSize = NOOP;
 
 // ---------------------------------------------------------------------------
 
-var callCallback = NOOP;
-var WIN_ENV = false;
-var MAC_ENV = false;
-
-// ---------------------------------------------------------------------------
-
-if( window.myCallback != null ){
-	MAC_ENV = true;
-
-	// We're being previewed on Mac.  Create a callback
-	// function for communicating from the web page into Lightroom.
-	callCallback = function() {
-		// On Mac we use a special javascript to talk to Lightroom.
-		var javascript = 'myCallback.' + arguments[ 0 ] + "( ";
-		var j = arguments.length;
-		var c = j - 1;
-		for( var i = 1; i < j; i++ ) {
-			var arg = arguments[ i ];
-			if( typeof( arg ) == 'string' ) {
-				javascript = javascript + '"' + arg + '"';
-			}
-			if( typeof( arg ) == 'number' ) {
-				javascript = javascript + arg
-			}
-			if( typeof( arg ) == 'undefined' ) {
-				javascript = javascript + 'undefined'
-			}
-			if( i < c ) {
-				javascript = javascript + ", "
-			}
+callCallback = function() {
+	var javascript = 'myCallback.' + arguments[ 0 ] + "( ";
+	var j = arguments.length;
+	var c = j - 1;
+	for( var i = 1; i < j; i++ ) {
+		var arg = arguments[ i ];
+		if( typeof( arg ) == 'string' ) {
+			javascript = javascript + '"' + arg + '"';
 		}
-		javascript = javascript + " )"
-		eval( javascript )
+		if( typeof( arg ) == 'number' ) {
+			javascript = javascript + arg
+		}
+		if( typeof( arg ) == 'undefined' ) {
+			javascript = javascript + 'undefined'
+		}
+		if( i < c ) {
+			javascript = javascript + ", "
+		}
 	}
-	
-	pushresult = function( result ) {
-		callCallback( "pushresult", result )
-	}
+	javascript = javascript + " )"
+	hosteval( javascript )
 }
 
-// ---------------------------------------------------------------------------
-
-else if( window.AgMode == 'preview' ) {
-	WIN_ENV = true;
-	// We're being previewed on Windows.  Create a callback
-	// function for communicating from the web page into Lightroom.
-	callCallback = function() {
-		// On windows we use a special lua: URL to talk to Lightroom.
-		var lua = arguments[ 0 ] + "( ";
-		var j = arguments.length;
-		var c = j - 1;
-		for( var i = 1; i < j; i++ ) {
-			var arg = arguments[ i ];
-			if( typeof( arg ) == 'string' ) {
-				lua = lua + '"' + arg + '"';
-			}
-			if( typeof( arg ) == 'number' ) {
-				lua = lua + arg
-			}
-			if( typeof( arg ) == 'undefined' ) {
-				lua = lua + 'undefined'
-			}
-			if( i < c ) {
-				lua = lua + ", "
-			}
-		}
-		lua = lua + ")"
-		location.href = "lua:" + lua
-	}
-	
-	pushresult = function( result ) {
-		location.href = "rsl:" + result;	
-	}
+pushresult = function( result ) {
+	callCallback( "pushresult", result )
 }
 
 // ---------------------------------------------------------------------------
@@ -270,7 +222,7 @@ document.liveUpdateImageMaxSize = function( id, value ) {
 
 //------------------------------------------------------------
 
-document.liveUpdatePropertyMac = function( id, property, value ) {
+document.liveUpdateProperty = function( id, property, value ) {
 
 	var targetArr = id.split(/[ \t\r\n]*,[ \t\r\n]*/);
 	var clasRegex = new RegExp( "^[.](.+$)" )
@@ -315,27 +267,6 @@ document.liveUpdatePropertyMac = function( id, property, value ) {
 		}
 	}
 };
-
-//------------------------------------------------------------
-
-document.liveUpdatePropertyWin = function( id, property, value ) {
-//	AgDebugPrint( "document.liveUpdatePropertyWin( " + id + ", " + property + ", " + value + " )\n" );
-	if( property == "maxSize" ) {
-		return document.liveUpdateImageMaxSize( id, value );
-	}
-	if( property == 'display' || value == 'inherit' ) {
-		return "failed"
-	}
-	var x = document.styleSheets[0];
-	x.addRule(id, property + ": " + value + " !important");
-	return "invalidateAllContent";
-}
-if( MAC_ENV ) {
-	document.liveUpdateProperty = document.liveUpdatePropertyMac
-}
-if( WIN_ENV ) {
-	document.liveUpdateProperty = document.liveUpdatePropertyWin
-}
 
 //------------------------------------------------------------
 
@@ -435,4 +366,3 @@ document.liveUpdateImageSize = function( imageID, width, height ) {
 }
 
 //------------------------------------------------------------
-
